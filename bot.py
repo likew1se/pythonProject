@@ -1,22 +1,17 @@
-import logging
-from telegram import Update
-from telegram.ext import ApplicationBuilder, ContextTypes, CommandHandler
+async def on_startup(dp):
+    from utils.notify_admins import on_startup_notify
+    await on_startup_notify(dp)
 
-logging.basicConfig(
-    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
-    level=logging.INFO
-)
+    from utils.set_bot_commands import set_default_commands
+    await set_default_commands(dp)
 
-
-async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    await context.bot.send_message(chat_id=update.effective_chat.id, text="Hello")
+    print('Бот запущен')
 
 
+#logging.basicConfig(level=logging.INFO)
 
 if __name__ == '__main__':
-    application = ApplicationBuilder().token("5315000864:AAGo56cukQUYj0NPrpzwyPTC5zfhSXVju5I").build()
+    from aiogram import executor
+    from handlers import dp
 
-    start_handler = CommandHandler('start', start)
-    application.add_handler(start_handler)
-
-    application.run_polling()
+    executor.start_polling(dp, on_startup=on_startup)
