@@ -1,1 +1,1 @@
-from .test import register
+from .user_state import register, new_register

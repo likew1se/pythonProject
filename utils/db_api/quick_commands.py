@@ -27,6 +27,6 @@ async def select_user(user_id):
     return user
 
 
-async def update_status(user_id, status):
+async def update_name(user_id, first_name, last_name):
     user = await select_user(user_id)
-    await user.update(status=status).apply()
+    await user.update(first_name=first_name, last_name=last_name).apply()

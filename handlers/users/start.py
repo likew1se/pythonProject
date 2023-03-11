@@ -1,12 +1,22 @@
 from aiogram import types
+from aiogram.types import ReplyKeyboardRemove
+
+from keyboards.inline import ikb_start, ikb_change
 from loader import dp
 from utils.misc import rate_limit
-
+from utils.db_api import quick_commands as commands
 from filters import IsPrivate
 
 
 @rate_limit(limit=3, key='/start')
 @dp.message_handler(IsPrivate(), text='/start')
 async def command_start(message: types.Message):
-    await message.answer(f'Привет, {message.from_user.full_name}! \n'
-                         f'Твой id: {message.from_user.id}')
+    try:
+        user = await commands.select_user(message.from_user.id)
+        if user.status == 'active':
+            await message.answer(f'Привет {user.first_name}\n'
+                                 f'Ты уже зарегистрирован', reply_markup=ikb_change)
+    except Exception:
+        await message.answer(f'Привет, {message.from_user.first_name}!', reply_markup=ikb_start)
+
+

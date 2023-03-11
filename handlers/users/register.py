@@ -1,38 +1,50 @@
 from aiogram.dispatcher import FSMContext
-from aiogram.dispatcher.filters import Command
 from aiogram import types
+from aiogram.types import CallbackQuery
 
+
+from utils.db_api import quick_commands as commands
 from filters import IsPrivate
 from states import register
 
 from loader import dp
 
 
-@dp.message_handler(IsPrivate(), text='Регистрация')
-async def register_(message: types.Message):
+@dp.callback_query_handler(text='reg')
+async def register_(call: CallbackQuery):
+    try:
+        user = await commands.select_user(call.from_user.id)
+        if user.status == 'active':
+            await call.message.answer('Ты уже зарегистрирован')
+    except Exception:
+        await call.message.answer('Привет, ты начал регистрацию!\nВведи свое имя')
+        await register.first_name.set()
 
-    await message.answer('Привет, ты начал регистрацию\nВведи свое имя')
-    await register.test1.set()
 
-
-@dp.message_handler(state=register.test1)
+@dp.message_handler(state=register.first_name)
 async def state1(message: types.Message, state: FSMContext):
     answer = message.text
 
-    await state.update_data(test1=answer)
-    await message.answer(f'{answer}, сколько тебе лет?')
-    await register.test2.set()
+    await state.update_data(first_name=answer)
+    await message.answer('Введи свою фамилию')
+    await register.last_name.set()
 
 
-@dp.message_handler(state=register.test2)
+@dp.message_handler(state=register.last_name)
 async def state2(message: types.Message, state: FSMContext):
     answer = message.text
 
-    await state.update_data(test2=answer)
+    await state.update_data(last_name=answer)
     data = await state.get_data()
-    name = data.get('test1')
-    years = data.get('test2')
+    name = data.get('first_name')
+    surname = data.get('last_name')
+    await commands.add_user(user_id=message.from_user.id,
+                            first_name=name,
+                            last_name=surname,
+                            username=message.from_user.username,
+                            status='active')
     await message.answer(f'Регистрация завершена\n'
-                         f'Твое имя {name}\n'
-                         f'Тебе {years}')
+                         f'Пользователь {name} {surname} создан')
     await state.finish()
+
+

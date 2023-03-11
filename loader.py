@@ -5,8 +5,6 @@ from utils.db_api.db_gino import db
 
 from data import config
 
-import postgre as pg
-
 bot = Bot(token=config.BOT_TOKEN, parse_mode=types.ParseMode.HTML)
 
 
