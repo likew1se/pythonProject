@@ -1,6 +1,8 @@
 from aiogram import Bot, types, Dispatcher
 from aiogram.contrib.fsm_storage.memory import MemoryStorage
 
+from utils.db_api.db_gino import db
+
 from data import config
 
 import postgre as pg
@@ -13,6 +15,8 @@ storage = MemoryStorage()
 
 dp = Dispatcher(bot, storage=storage)
 
+
+__all__ = ['bot', 'storage', 'dp', 'db']
 
 # хандлеры из бот файла
 # @dp.message_handler(commands=['start'])

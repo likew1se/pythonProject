@@ -6,14 +6,15 @@ from utils.db_api.db_gino import db
 
 
 async def db_test():
-    await db.set_bind(config.POSTGRES_URI)
-    #await db.gino.drop_all()
-    await db.gino.create_all()
-    await commands.add_user(1, 'Egor', 'Net')
-    await commands.add_user(144, 'egor', '2323')
-    await commands.add_user(8, 'Egor', 'asdgg34')
-    await commands.add_user(22323567, 'aasdd', 'Имя')
-    await commands.add_user(909087, 'botssz', 'd4')
+    # await db.set_bind(config.POSTGRES_URI)
+    # await db.gino.drop_all()
+    # await db.gino.create_all()
+
+    # await commands.add_user(1, 'Egor', 'Net')
+    # await commands.add_user(144, 'egor', '2323')
+    # await commands.add_user(8, 'Egor', 'asdgg34')
+    # await commands.add_user(22323567, 'aasdd', 'Имя')
+    # await commands.add_user(909087, 'botssz', 'd4')
 
     users = await commands.select_all_users()
     print(users)
