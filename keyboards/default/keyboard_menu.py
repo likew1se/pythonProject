@@ -7,6 +7,10 @@ kb_menu = ReplyKeyboardMarkup(
         ],
         [
             KeyboardButton(text='Любой текст')
+        ],
+        [
+            KeyboardButton(text='Инлайн меню')
         ]
-    ]
+    ],
+    resize_keyboard=True
 )

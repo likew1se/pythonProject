@@ -5,6 +5,11 @@ async def on_startup(dp):
     from utils.set_bot_commands import set_default_commands
     await set_default_commands(dp)
 
+    import filters
+    filters.setup(dp)
+    import middlewares
+    middlewares.setup(dp)
+
     print('Бот запущен')
 
 

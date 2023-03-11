@@ -5,5 +5,6 @@ kb_test = ReplyKeyboardMarkup(
         [
             KeyboardButton(text='/menu')
         ]
-    ]
+    ],
+    resize_keyboard=True
 )
