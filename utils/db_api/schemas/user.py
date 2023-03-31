@@ -1,4 +1,4 @@
-from sqlalchemy import Column, BigInteger, String, sql
+from sqlalchemy import Column, BigInteger, String, sql, Float
 
 from utils.db_api.db_gino import TimedBaseModel
 
@@ -10,5 +10,6 @@ class User(TimedBaseModel):
     last_name = Column(String(200))
     username = Column(String(50))
     status = Column(String(30))
+    score = Column(Float)
 
     query: sql.select

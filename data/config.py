@@ -1,4 +1,6 @@
 import os
+from pathlib import Path
+
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -17,3 +19,9 @@ DATABASE = str(os.getenv('DATABASE'))
 
 
 POSTGRES_URI = f'postgresql://{PGUSER}:{PGPASSWORD}@{ip}/{DATABASE}'
+
+
+PATH_TO_FILE = Path("pythonProject/testfold/")
+
+
+

@@ -1,5 +1,4 @@
 from aiogram import types
-from aiogram.types import ReplyKeyboardRemove
 
 from keyboards.inline import ikb_start, ikb_change
 from loader import dp
@@ -16,7 +15,7 @@ async def command_start(message: types.Message):
         if user.status == 'active':
             await message.answer(f'Привет {user.first_name}\n'
                                  f'Ты уже зарегистрирован', reply_markup=ikb_change)
-    except Exception:
+    except AttributeError:
         await message.answer(f'Привет, {message.from_user.first_name}!', reply_markup=ikb_start)
 
 

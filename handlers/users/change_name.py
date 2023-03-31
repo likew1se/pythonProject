@@ -2,6 +2,7 @@ from aiogram import types
 from aiogram.dispatcher import FSMContext
 from aiogram.types import CallbackQuery
 
+from keyboards.inline import ikb_game_start
 from utils.db_api import quick_commands as commands
 from states import new_register
 from loader import dp
@@ -36,5 +37,5 @@ async def state2(message: types.Message, state: FSMContext):
                                first_name=name,
                                last_name=surname)
     await message.answer(f'Профиль успешно изменен\n'
-                         f'Твое новое имя: {name} {surname}')
+                         f'Твое новое имя: {name} {surname}', reply_markup=ikb_game_start)
     await state.finish()

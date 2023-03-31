@@ -2,7 +2,7 @@ from aiogram.dispatcher import FSMContext
 from aiogram import types
 from aiogram.types import CallbackQuery
 
-
+from keyboards.inline import ikb_change
 from utils.db_api import quick_commands as commands
 from filters import IsPrivate
 from states import register
@@ -16,7 +16,7 @@ async def register_(call: CallbackQuery):
         user = await commands.select_user(call.from_user.id)
         if user.status == 'active':
             await call.message.answer('Ты уже зарегистрирован')
-    except Exception:
+    except AttributeError:
         await call.message.answer('Привет, ты начал регистрацию!\nВведи свое имя')
         await register.first_name.set()
 
@@ -42,9 +42,10 @@ async def state2(message: types.Message, state: FSMContext):
                             first_name=name,
                             last_name=surname,
                             username=message.from_user.username,
-                            status='active')
+                            status='active',
+                            score=0)
     await message.answer(f'Регистрация завершена\n'
-                         f'Пользователь {name} {surname} создан')
+                         f'Пользователь {name} {surname} создан', reply_markup=ikb_change)
     await state.finish()
 
 
