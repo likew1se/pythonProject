@@ -1,3 +1,6 @@
+from collections import Counter
+from _operator import itemgetter
+
 from asyncpg import UniqueViolationError
 import asyncio
 from data import config
@@ -41,6 +44,16 @@ async def update_score(user_id):
     user = await select_user(user_id)
     new_score = user.score + 1
     await user.update(score=new_score).apply()
+
+
+async def show_top():
+    users = await User.select('user_id', 'score').where(User.score != 0).gino.all()
+    return sorted(users, key=lambda item: item[1], reverse=True)
+
+
+async def get_score(user_id):
+    user = await select_user(user_id)
+    return user.score
 
 
 # loop = asyncio.get_event_loop()

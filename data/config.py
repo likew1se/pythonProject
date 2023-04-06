@@ -21,7 +21,13 @@ DATABASE = str(os.getenv('DATABASE'))
 POSTGRES_URI = f'postgresql://{PGUSER}:{PGPASSWORD}@{ip}/{DATABASE}'
 
 
-PATH_TO_FILE = Path("pythonProject/testfold/")
+DISEASE_NAME = {'mel': 'Меланома',
+               'akiec': 'Актинический кератоз/карцинома/болезнь Боуэна',
+               'bcc': 'Базально-клеточная карцинома',
+               'bkl': 'Доброкачественные поражения',
+               'df': 'Дерматофиброма',
+               'nv': 'Меланоцитарные невусы',
+               'vasc': 'Сосудистые поражения'}
 
 
 

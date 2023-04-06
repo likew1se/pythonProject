@@ -7,5 +7,11 @@ ikb_change = InlineKeyboardMarkup(row_width=1,
                                       ],
                                       [
                                           InlineKeyboardButton(text='Начать игру', callback_data='game')
+                                      ],
+                                      [
+                                          InlineKeyboardButton(text='Таблица лидеров', callback_data='leader')
+                                      ],
+                                      [
+                                          InlineKeyboardButton(text='Посмотреть свой счет', callback_data='check')
                                       ]
                                   ])

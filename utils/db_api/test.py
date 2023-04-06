@@ -12,7 +12,6 @@ async def get_dirname(filename):
     # await db.set_bind(config.POSTGRES_URI)
     image = await File.query.where(File.filename == filename).gino.first()
     dir = image.dirname
-    print(dir)
     return dir
 
 
@@ -24,8 +23,6 @@ async def select_random_image():
     image = ''.join(map(str, res))
     file = await File.query.where(File.file_id == int(image)).gino.first()
     filename = str(file.filename)
-    print(filename)
-    print(file.dirname)
     return filename
 
 # loop = asyncio.get_event_loop()
