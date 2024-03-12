@@ -8,6 +8,8 @@ from .register import dp
 from .change_name import dp
 from .game_test import dp
 from .error import dp
+from .test import dp
+from .oprosnik import dp
 
 __all__ = ['dp']
 

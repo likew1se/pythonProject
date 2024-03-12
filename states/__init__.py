@@ -1,1 +1,1 @@
-from .user_state import register, new_register
+from .user_state import register, new_register, oprosnik
