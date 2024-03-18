@@ -21,3 +21,7 @@ class oprosnik(StatesGroup):
     q7 = State()
     q8 = State()
 
+
+class get_photo(StatesGroup):
+    photo_file = State()
+

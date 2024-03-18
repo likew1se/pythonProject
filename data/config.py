@@ -30,4 +30,4 @@ DISEASE_NAME = {'mel': 'Меланома',
                'vasc': 'Сосудистые поражения'}
 
 
-
+PHOTO_DIR = 'C:\bots\pythonProject\photos'

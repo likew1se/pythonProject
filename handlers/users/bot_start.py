@@ -48,3 +48,6 @@ async def profile(message: types.Message):
                          f'last_nanme - {user.last_name}\n'
                          f'username - {user.username}\n'
                          f'status - {user.status}')
+
+
+

@@ -3,7 +3,7 @@ from aiogram.dispatcher import FSMContext
 from aiogram import types
 from states import oprosnik
 from loader import dp
-from utils import answers_temp
+#from utils import answers_temp
 
 
 @dp.callback_query_handler(text='opros')
@@ -81,4 +81,22 @@ async def q8(message: types.Message, state: FSMContext):
     a6 = data.get('q6')
     a7 = data.get('q7')
     a8 = data.get('q8')
-
+    if 'да' in str(a1).lower():
+        await message.answer('Рекомендуем обратиться к специалисту')
+    elif 'нет' in str(a2).lower():
+        await message.answer('Рекомендуем обратиться к специалисту')
+    elif 'нет' in str(a3).lower():
+        await message.answer('Рекомендуем обратиться к специалисту')
+    elif 'да' in str(a4).lower():
+        await message.answer('Рекомендуем обратиться к специалисту')
+    elif 'да' in str(a5).lower():
+        await message.answer('Рекомендуем обратиться к специалисту')
+    elif 'да' in str(a6).lower():
+        await message.answer('Рекомендуем обратиться к специалисту')
+    elif 'да' in str(a7).lower():
+        await message.answer('Рекомендуем обратиться к специалисту')
+    elif 'да' in str(a8).lower():
+        await message.answer('Рекомендуем обратиться к специалисту')
+    else:
+        await message.answer('Риск злокачественности образования низок, но для точной диагностики рекомендуем обратиться к специалисту')
+    await state.finish()

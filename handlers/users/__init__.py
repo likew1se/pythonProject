@@ -1,4 +1,5 @@
 from .start import dp
+from .cv import dp
 # from .bot_start import dp
 from .leaderboard import dp
 from .check_score import dp
@@ -10,6 +11,8 @@ from .game_test import dp
 from .error import dp
 from .test import dp
 from .oprosnik import dp
+
+
 
 __all__ = ['dp']
 
