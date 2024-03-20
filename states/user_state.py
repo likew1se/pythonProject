@@ -9,3 +9,12 @@ class register(StatesGroup):
 class new_register(StatesGroup):
     new_first_name = State()
     new_last_name = State()
+
+class testbot(StatesGroup):
+    msg = State()
+
+class stt(StatesGroup):
+    msg_stt = State()
+
+class cr(StatesGroup):
+    msg_cr = State()
